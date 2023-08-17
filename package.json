@@ -14,9 +14,12 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",
+    "eslint": "^8.47.0",
+    "eslint-config-react-app": "^7.0.1",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.5",
     "vitawind": "^2.2.4",
-    "vite": "^2.7.2"
+    "vite": "^2.7.2",
+    "vite-plugin-eslint": "^1.8.1"
   }
 }
