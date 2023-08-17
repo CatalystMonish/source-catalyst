@@ -1,7 +1,5 @@
 # Source Catalyst Client App
 
-![Source Catalyst Icon](./path_to_icon_image.png)
-
 ## 🌐 Website
 
 [Source Catalyst](https://www.thesourcecatalyst.in)
@@ -29,10 +27,3 @@ Our user-friendly approach ensures that the internship experience is smooth and 
 - [Internship Listings](https://www.thesourcecatalyst.in/internships)
 - [Study Material](https://www.thesourcecatalyst.in/study-material)
 - [Contact Us](https://www.thesourcecatalyst.in/contact)
-
-## 🛠️ Development
-
-Instructions for setting up the development environment...
-
-(You can add more sections like 'How to Contribute', 'License', 'Acknowledgements' etc. as per your requirement.)
-
