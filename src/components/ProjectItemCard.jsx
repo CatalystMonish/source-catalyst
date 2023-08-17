@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProjectItemCard = () => {
   return (
-    <div className='flex flex-row px-3 py-4 w-full h-auto rounded-xl bg-white shadow-md'>
+    <div className='flex flex-row px-3 py-4 w-full h-auto rounded-xl bg-white'>
       <div className='flex flex-col'>
         <p className='font-semibold text-left text-lg font-poppins space-y-2 px-10 mr-4'>Python Installation</p>
         <div>

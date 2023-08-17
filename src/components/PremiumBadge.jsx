@@ -5,7 +5,7 @@ function PremiumBadge() {
     <div className='flex flex-row'>
         
         
-        <p className='bg-[#FFCA0F] px-2 py-1 shadow-lg shadow-[#FFCA0F] rounded-full font-semibold text-white'>Premium</p>
+        <p className='bg-[#FFCA0F] px-4 py-2 rounded-full text-sm font-semibold text-white'>Premium</p>
 
     </div>
   )

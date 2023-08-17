@@ -1,8 +1,8 @@
 import React from 'react'
 
-function TitleBold(prop) {
+function TitleBold({text}) {
   return (
-    <p className='text-lg font-bold text-left text-[#525252]'>{prop.text}</p>
+    <p className='text-sm font-extrabold text-left text-[#525252] my-2'>{text}</p>
   )
 }
 
