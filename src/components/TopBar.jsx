@@ -2,7 +2,7 @@ import React from "react";
 
 function TopBar() {
   return (
-    <div className="sticky top-0 z-10 flex flex-row bg-white shadow-md items-center">
+    <div className="fixed top-0 z-10 w-full flex flex-row bg-white shadow-md items-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
