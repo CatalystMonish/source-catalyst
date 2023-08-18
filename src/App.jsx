@@ -5,6 +5,7 @@ import HomeScreen from "./screens/HomeScreen";
 import JourneyScreen from "./screens/JourneyScreen";
 import MentorScreen from "./screens/MentorScreen";
 import EventsScreen from "./screens/EventsScreen";
+import PremiumSellCard from "./components/PremiumSellCard";
 
 function App() {
   return (

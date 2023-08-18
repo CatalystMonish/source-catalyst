@@ -1,19 +1,32 @@
-import React from 'react'
+import React from "react";
+
+import { useNavigate } from "react-router-dom";
 
 function LoginScreen() {
+  const navigate = useNavigate();
+
   return (
-    <div className="bg-blue-600 h-screen flex justify-center">
-    <div className="flex flex-col mx-5 justify-center h-screen max-w-[900px]">
+    <div className="flex h-screen justify-center bg-blue-600">
+      <div className="mx-5 flex h-screen max-w-[900px] flex-col justify-center">
+        <p className="text-3xl font-semibold text-white ">
+          Welcome to Source Catalyst
+        </p>
+        <p className="mb-5 text-center text-lg font-semibold text-[#eaeaea] ">
+          LEARN. GROW. UPSKILL
+        </p>
 
-
-        <p className="font-semibold text-3xl text-white ">Welcome to Source Catalyst</p>
-        <p className="font-semibold text-lg text-[#eaeaea] text-center mb-5 ">LEARN. GROW. UPSKILL</p>
-
-        <button className="my-2 px-4 py-4 bg-white text-blue-600 font-semibold text-lg rounded-xl">Log In</button>
-        <button className="px-4 mb-2 py-4 border-2 border-white text-white font-semibold text-lg rounded-xl">Sign Up</button>
+        <button
+          onClick={() => navigate("/")}
+          className="my-2 rounded-xl bg-white px-4 py-4 text-lg font-semibold text-blue-600"
+        >
+          Log In
+        </button>
+        <button className="mb-2 rounded-xl border-2 border-white px-4 py-4 text-lg font-semibold text-white">
+          Sign Up
+        </button>
+      </div>
     </div>
-    </div>
-  )
+  );
 }
 
-export default LoginScreen
+export default LoginScreen;

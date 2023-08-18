@@ -7,7 +7,7 @@ function PremiumBadge() {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="h-3 w-3 mr-1 text-white"
+        className="mr-1 h-3 w-3 text-white"
       >
         <path
           fillRule="evenodd"
@@ -16,9 +16,7 @@ function PremiumBadge() {
         />
       </svg>
 
-      <p className="text-[10px] font-semibold text-white">
-        Premium
-      </p>
+      <p className="text-[10px] font-semibold text-white">Premium</p>
     </div>
   );
 }
