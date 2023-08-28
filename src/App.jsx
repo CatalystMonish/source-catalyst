@@ -6,22 +6,26 @@ import JourneyScreen from "./screens/JourneyScreen";
 import MentorScreen from "./screens/MentorScreen";
 import EventsScreen from "./screens/EventsScreen";
 import PremiumSellCard from "./components/PremiumSellCard";
+import { AuthContextProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <div className="App bg-[#F2F1F7]">
-      <Router>
-        <Routes>
-          <Route path="/login" exact element={<LoginScreen />} />
-
-          <Route path="/" exact element={<HomeLayout />}>
-            <Route path="/" element={<HomeScreen />} />
-            <Route path="/journey" element={<JourneyScreen />} />
-            <Route path="/mentor" element={<MentorScreen />} />
-            <Route path="/events" element={<EventsScreen />} />
-          </Route>
-        </Routes>
-      </Router>
+      <AuthContextProvider>
+        <Router>
+          <Routes>
+            <Route path="/login" exact element={<LoginScreen />} />
+            <Route element={<HomeLayout />}>
+              <Route path="/" element={<HomeLayout />}>
+                <Route index element={<HomeScreen />} />
+                <Route path="/journey" element={<JourneyScreen />} />
+                <Route path="/mentor" element={<MentorScreen />} />
+                <Route path="/events" element={<EventsScreen />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Router>
+      </AuthContextProvider>
     </div>
   );
 }

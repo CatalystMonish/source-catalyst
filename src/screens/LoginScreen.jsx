@@ -1,29 +1,58 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
+import googleLogo from "../images/googleLogo.png";
 
 function LoginScreen() {
+  const { googleSignIn, user, logOut } = UserAuth();
   const navigate = useNavigate();
 
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("Before funtion", user)
+    if (user != null) {
+      console.log("User is NOT NULL");
+      const name = user?.displayName;
+      navigate("/");
+      console.log("User", name);
+    }
+  }, [user]);
+
   return (
-    <div className="flex h-screen justify-center bg-blue-600">
-      <div className="mx-5 flex h-screen max-w-[900px] flex-col justify-center">
-        <p className="text-3xl font-semibold text-white ">
+    <div className="t-0 flex h-screen justify-center bg-primary font-lexend font-heading">
+      <div className="mx-5 flex h-screen max-w-[900px] flex-col items-center justify-center">
+        <p className="text-center font-lexend text-heading font-heading text-white ">
           Welcome to Source Catalyst
         </p>
-        <p className="mb-5 text-center text-lg font-semibold text-[#eaeaea] ">
+        <p className="mb-5 text-center text-section-head font-section-head text-[#eaeaea] ">
           LEARN. GROW. UPSKILL
         </p>
 
         <button
-          onClick={() => navigate("/")}
-          className="my-2 rounded-xl bg-white px-4 py-4 text-lg font-semibold text-blue-600"
+          onClick={handleGoogleSignIn} // Updated to use handleLogin function
+          className="w-fit rounded-full  bg-light px-s-20 py-s-17 font-lexend text-label font-label text-dark"
         >
-          Log In
+          <div className="flex items-center justify-center gap-2">
+            <img alt="google" className="h-6 w-6" src={googleLogo} />
+            <span>Continue to Google</span>
+          </div>
         </button>
-        <button className="mb-2 rounded-xl border-2 border-white px-4 py-4 text-lg font-semibold text-white">
-          Sign Up
-        </button>
+        <button onClick={handleSignOut}>Logout</button>
       </div>
     </div>
   );

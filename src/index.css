@@ -2,3 +2,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "lexend";
+  src: url("../src/fonts/LexendDeca-VariableFont_wght.ttf");
+}
+.position1,
+.position3 {
+  transform: translateY(-6.25rem) scale(0.9);
+  filter: blur(5px);
+  opacity: 0;
+}
+
+.position2 {
+  transform: scale(1.1);
+}
+
+.card {
+  transition: all 2s;
+}
