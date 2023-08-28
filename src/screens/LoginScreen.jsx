@@ -24,11 +24,9 @@ function LoginScreen() {
   };
 
   useEffect(() => {
-    console.log("Before funtion", user)
-    if (user != null) {
-      console.log("User is NOT NULL");
-      const name = user?.displayName;
+    if (user) {
       navigate("/");
+      const name = user?.displayName;
       console.log("User", name);
     }
   }, [user]);

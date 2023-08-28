@@ -5,8 +5,10 @@ import HomeScreen from "./screens/HomeScreen";
 import JourneyScreen from "./screens/JourneyScreen";
 import MentorScreen from "./screens/MentorScreen";
 import EventsScreen from "./screens/EventsScreen";
-import PremiumSellCard from "./components/PremiumSellCard";
 import { AuthContextProvider } from "./context/AuthContext";
+import Protected from "./components/Protected";
+import { Navigate } from "react-router-dom";
+import { UserAuth } from "./context/AuthContext";
 
 function App() {
   return (
@@ -15,13 +17,48 @@ function App() {
         <Router>
           <Routes>
             <Route path="/login" exact element={<LoginScreen />} />
+
             <Route element={<HomeLayout />}>
-              <Route path="/" element={<HomeLayout />}>
-                <Route index element={<HomeScreen />} />
-                <Route path="/journey" element={<JourneyScreen />} />
-                <Route path="/mentor" element={<MentorScreen />} />
-                <Route path="/events" element={<EventsScreen />} />
-              </Route>
+              <Route
+                path="/"
+                element={
+                  <Protected>
+                    <HomeLayout />
+                  </Protected>
+                }
+              />
+              <Route
+                index
+                element={
+                  <Protected>
+                    <HomeScreen />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/journey"
+                element={
+                  <Protected>
+                    <JourneyScreen />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/mentor"
+                element={
+                  <Protected>
+                    <MentorScreen />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/events"
+                element={
+                  <Protected>
+                    <EventsScreen />
+                  </Protected>
+                }
+              />
             </Route>
           </Routes>
         </Router>

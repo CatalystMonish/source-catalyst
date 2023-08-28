@@ -20,7 +20,7 @@ function HomeScreen() {
     <div className="100vh bg-[#F2F1F7]">
       <div className="h-[320px] bg-slate-300" />
       <div className="mx-4">
-        <TitleBold text="START YOUR ADVENTURE" />
+        <TitleBold text={user?.displayName} />
         <div className="flex flex-row gap-2 ">
           <DomainCard />
           <DomainCard />
