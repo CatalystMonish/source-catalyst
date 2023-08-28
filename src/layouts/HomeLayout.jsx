@@ -11,6 +11,7 @@ import JourneyScreen from "../screens/JourneyScreen";
 import MentorScreen from "../screens/MentorScreen";
 import TopBar from "../components/TopBar";
 import EventsScreen from "../screens/EventsScreen";
+import Navbar from "../components/NavbarNew";
 
 function HomeLayout() {
   return (
@@ -21,7 +22,7 @@ function HomeLayout() {
           <Outlet />
         </div>
       </div>
-      <NavBar />
+      <Navbar />
     </div>
   );
 }
