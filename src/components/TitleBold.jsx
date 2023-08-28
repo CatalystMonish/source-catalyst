@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
-function TitleBold({text}) {
+function TitleBold({ text }) {
   return (
-    <p className='text-sm font-extrabold text-left text-[#525252] my-2'>{text}</p>
-  )
+    <p className="my-2 mb-m-10 mt-m-15 text-left font-lexend text-section-head font-section-head text-dark">
+      {text}
+    </p>
+  );
 }
 
-export default TitleBold
+export default TitleBold;

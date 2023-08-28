@@ -50,7 +50,7 @@ function LoginScreen() {
             <span>Continue to Google</span>
           </div>
         </button>
-        <button onClick={handleSignOut}>Logout</button>
+        {/* <button onClick={handleSignOut}>Logout</button> */}
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ module.exports = {
         title: "400", // Regular
         subtitle: "400", // Regular
         label: "400", // Regular
-        "section-head": "600", // SemiBold
+        "section-head": "700", // SemiBold
         "small-light": "400", // Regular
         small: "400", // Regular
         content: "400", // Regular

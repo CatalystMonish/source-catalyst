@@ -9,6 +9,7 @@ import { AuthContextProvider } from "./context/AuthContext";
 import Protected from "./components/Protected";
 import { Navigate } from "react-router-dom";
 import { UserAuth } from "./context/AuthContext";
+import ProjectsScreen from "./screens/ProjectsScreen";
 
 function App() {
   return (
@@ -32,6 +33,14 @@ function App() {
                 element={
                   <Protected>
                     <HomeScreen />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/projects"
+                element={
+                  <Protected>
+                    <ProjectsScreen />
                   </Protected>
                 }
               />

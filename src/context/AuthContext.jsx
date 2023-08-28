@@ -1,21 +1,29 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
-  signInWithPopup,
   signInWithRedirect,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Capacitor } from "@capacitor/core";
+import { FirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { auth } from "../firebase";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+
+  const isNativePlatform = Capacitor.isNative;
+
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
+
+    if (isNativePlatform) {
+      FirebaseAuthentication.signInWithGoogle();
+    } else {
+      signInWithRedirect(auth, provider);
+    }
   };
 
   const logOut = () => {
@@ -27,6 +35,7 @@ export const AuthContextProvider = ({ children }) => {
       setUser(currentUser);
       console.log("user", currentUser);
     });
+
     return () => {
       unsubscribe();
     };

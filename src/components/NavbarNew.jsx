@@ -15,7 +15,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const icons = {
-    Home: {
+    home: {
       default: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ const Navbar = () => {
       ),
       route: "/",
     },
-    Journey: {
+    journey: {
       default: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const Navbar = () => {
       ),
       route: "/journey",
     },
-    Projects: {
+    projects: {
       default: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@ const Navbar = () => {
       ),
       route: "/projects",
     },
-    Connect: {
+    connect: {
       default: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +142,7 @@ const Navbar = () => {
       ),
       route: "/connect",
     },
-    Events: {
+    events: {
       default: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -173,12 +173,12 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed bottom-0 flex w-full justify-around border-t bg-white py-1 font-lexend font-label">
+    <div className="fixed bottom-0 flex w-full justify-around border-t bg-white px-1 py-1 font-lexend text-label font-label outline-none">
       {Object.keys(icons).map((key) => (
         <Link
           key={key}
           to={icons[key].route}
-          className="flex cursor-pointer flex-col items-center text-center font-lexend"
+          className="flex cursor-pointer flex-col items-center text-center font-lexend outline-none"
           onClick={() => setSelected(key)}
         >
           {selected === key ? icons[key].active : icons[key].default}
