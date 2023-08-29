@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomeLayout from "./layouts/HomeLayout";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
-import JourneyScreen from "./screens/JourneyScreen";
+import WorkScreen from "./screens/WorkScreen";
 import MentorScreen from "./screens/MentorScreen";
 import EventsScreen from "./screens/EventsScreen";
 import { AuthContextProvider } from "./context/AuthContext";
@@ -15,6 +15,7 @@ import NewPostScreen from "./screens/NewPostScreen";
 import VideoPlayer from "./screens/VideoPlayer";
 import ProfileScreen from "./screens/ProfileScreen";
 import OngoingProjectScreen from "./screens/OngoingProjectScreen";
+import AdminPanel from "./screens/AdminScreen";
 
 function App() {
   return (
@@ -28,6 +29,14 @@ function App() {
               element={
                 <Protected>
                   <NewPostScreen />
+                </Protected>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <Protected>
+                  <AdminPanel />
                 </Protected>
               }
             />
@@ -74,6 +83,14 @@ function App() {
                 }
               />
               <Route
+                path="/work"
+                element={
+                  <Protected>
+                    <WorkScreen />
+                  </Protected>
+                }
+              />
+              <Route
                 path="/projects"
                 element={
                   <Protected>
@@ -81,14 +98,7 @@ function App() {
                   </Protected>
                 }
               />
-              <Route
-                path="/journey"
-                element={
-                  <Protected>
-                    <JourneyScreen />
-                  </Protected>
-                }
-              />
+
               <Route
                 path="/mentor"
                 element={
