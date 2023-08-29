@@ -7,11 +7,13 @@ import { UserAuth } from "../context/AuthContext";
 import FloatingActionButton from "../components/FloatingActionButton";
 import CardPostItem from "../components/CardPostItem";
 import pythonImg from "../images/python.png";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { SphereSpinner } from "react-spinners-kit";
 
 function HomeScreen() {
-  const { googleSignIn, user, logOut } = UserAuth();
+  const [loading, setLoading] = useState(true);
+  const { logOut } = UserAuth();
   const [posts, setPosts] = useState([]);
 
   const handleSignOut = async () => {
@@ -22,24 +24,47 @@ function HomeScreen() {
     }
   };
 
+  const fetchAuthorData = async (authorId) => {
+    const docRef = doc(db, "Users", authorId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data();
+    } else {
+      console.log("No such user!");
+      return null;
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true); // set loading to true when you start fetching data
         const querySnapshot = await getDocs(collection(db, "posts"));
         const postData = [];
-        querySnapshot.forEach((doc) => {
-          postData.push({ id: doc.id, ...doc.data() });
-        });
+
+        for (const doc of querySnapshot.docs) {
+          const data = doc.data();
+          const authorData = await fetchAuthorData(data.postAuthor);
+          postData.push({
+            id: doc.id,
+            authorName: authorData ? authorData.displayName : "",
+            authorIntro: authorData ? authorData.bio : "",
+            authorImg: authorData ? authorData.photoURL : "",
+            ...data,
+          });
+        }
+
         setPosts(postData);
+        setLoading(false);
       } catch (error) {
         console.log("Error fetching posts:", error);
+        setLoading(false); // set loading to false even on an error
       }
     };
+
     fetchData();
   }, []);
-
   return (
-    <div className="mt-[4.625rem] bg-light">
+    <div className="min-h-screen bg-light py-[4.625rem]">
       <div className="mx-m-15">
         <TitleBold text="ONGOING PROJECT" />
         <div className="flex justify-center rounded-md bg-white py-[40px]">
@@ -50,24 +75,30 @@ function HomeScreen() {
         </div>
         <TitleBold text="FROM OUR COMMUNITY" />
         <div className="gap-2 space-y-2 md:grid md:grid-cols-2 md:space-y-0">
-          {posts.map((post) => (
-            <CardPostItem
-              key={post.id}
-              postId={post.id}
-              authorName={post.authorName}
-              authorIntro={post.authorIntro}
-              postTitle={post.postTitle}
-              postContent={post.postContent}
-              imgSrc={post.imgSrc}
-              likesCount={post.likesCount}
-            />
-          ))}
+          {loading ? (
+            <div className="flex items-center justify-center py-5">
+              <SphereSpinner size={30} color="#2E7CF6" loading={loading} />
+            </div>
+          ) : (
+            posts.map((post) => (
+              <CardPostItem
+                key={post.id}
+                postId={post.id}
+                authorName={post.authorName}
+                authorIntro={post.authorIntro}
+                postTitle={post.postTitle}
+                postContent={post.postContent}
+                imgSrc={post.authorImg}
+                likesCount={post.likesCount}
+              />
+            ))
+          )}
         </div>
-        <TitleBold text="SUPPORT" />
-        <button onClick={handleSignOut}>Logout</button>
+
+        {/* <TitleBold text="SUPPORT" />
+        <button onClick={handleSignOut}>Logout</button> */}
       </div>
       <FloatingActionButton />
-      <div className="h-[320px] bg-slate-300" />
     </div>
   );
 }

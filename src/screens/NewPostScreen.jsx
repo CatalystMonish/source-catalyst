@@ -51,8 +51,8 @@ function NewPostScreen() {
 
   return (
     <div>
-      <PageBar />
-      <div className="h-screen pt-[4rem]">
+      <PageBar title="New Post" />
+      <div className="h-screen pt-[4rem] ">
         <div className="mx-m-15 ">
           <div className="flex items-center justify-between text-small font-small text-text-light">
             <TitleBold text="POST TITLE" />
@@ -99,8 +99,10 @@ function NewPostScreen() {
 
           <button
             disabled={isButtonDisabled}
-            className={`mt-s-20 w-full rounded-full px-s-20 py-s-17 font-lexend text-label font-label ${
-              isButtonDisabled ? "bg-gray-400" : "bg-green-700 text-white"
+            className={`mx-auto mt-s-20 flex w-full max-w-[500px] items-center justify-center  rounded-full px-s-20 py-s-17 font-lexend text-label font-label ${
+              isButtonDisabled
+                ? "bg-gray-400"
+                : "w-full bg-green-700 text-center text-white"
             }`}
             onClick={handleUploadPost}
           >

@@ -34,7 +34,11 @@ function CardPostItem({
   return (
     <div className="rounded-xl bg-white p-s-15">
       <div className="flex">
-        <img src={imgSrc} alt="Image" className="h-[2.5rem] w-[2.5rem]" />
+        <img
+          src={imgSrc}
+          alt="profile_photo"
+          className="h-[2.5rem] w-[2.5rem] rounded-full"
+        />
         <div className="ml-m-10 flex flex-col">
           <p className="font-lexend text-label font-label ">{authorName}</p>
           <p className="font-lexend text-small-light font-small-light text-text-light">

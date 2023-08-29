@@ -4,36 +4,49 @@ import {
   signInWithRedirect,
   signOut,
   onAuthStateChanged,
+  signInWithPopup,
 } from "firebase/auth";
-import { Capacitor } from "@capacitor/core";
-import { FirebaseAuthentication } from "@capacitor-firebase/authentication";
-import { auth } from "../firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const isNativePlatform = Capacitor.isNative;
-
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-
-    if (isNativePlatform) {
-      FirebaseAuthentication.signInWithGoogle();
-    } else {
-      signInWithRedirect(auth, provider);
-    }
+    signInWithPopup(auth, provider);
   };
 
   const logOut = () => {
     signOut(auth);
   };
 
+  const checkAndCreateUserDoc = async (currentUser) => {
+    const userRef = doc(db, "Users", currentUser.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      const { displayName, email, photoURL, emailVerified } = currentUser;
+      await setDoc(userRef, {
+        displayName,
+        email,
+        photoURL,
+        emailVerified,
+        // Add any other necessary fields here.
+      });
+    }
+  };
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      console.log("user", currentUser);
+      console.log("Currentuser", currentUser);
+
+      if (currentUser) {
+        await checkAndCreateUserDoc(currentUser);
+      }
     });
 
     return () => {

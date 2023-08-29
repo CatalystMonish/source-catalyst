@@ -173,7 +173,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed bottom-0 flex w-full justify-around border-t bg-white px-1 py-1 font-lexend text-label font-label outline-none">
+    <div className="fixed bottom-0 flex h-[4rem] w-full justify-around border-t bg-white px-1 py-1 font-lexend text-label font-label outline-none">
       {Object.keys(icons).map((key) => (
         <Link
           key={key}

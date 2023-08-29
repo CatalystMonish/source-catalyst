@@ -13,23 +13,23 @@ function TopBar() {
     <div className="fixed top-0 z-10 flex h-[4rem] w-full flex-row items-center bg-white font-lexend text-heading font-heading shadow-md">
       <div>
         <svg
-          onClick={goBack}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
+          onClick={goBack}
           viewBox="0 0 24 24"
-          strokeWidth={2}
+          strokeWidth={1.5}
           stroke="currentColor"
           className="ml-m-20 h-6 w-6"
         >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
           />
         </svg>
       </div>
 
-      <p className=" font-poppins ml-m-15 py-4 font-semibold ">
+      <p className=" ml-m-15 py-4 font-lexend text-heading font-heading ">
         Source Catalyst
       </p>
 

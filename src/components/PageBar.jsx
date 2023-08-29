@@ -1,10 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-function PageBar() {
+function PageBar({ title }) {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate("/"); // Go back one step in history
+  };
   return (
     <div>
       <div className="fixed top-0 z-10 flex h-[4rem] w-full flex-row items-center bg-white font-lexend text-heading font-heading shadow-md">
         <svg
+          onClick={goBack}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -19,9 +25,7 @@ function PageBar() {
           />
         </svg>
 
-        <p className="ml-m-10 font-lexend text-heading font-heading">
-          New Post
-        </p>
+        <p className="ml-m-10 font-lexend text-heading font-heading">{title}</p>
       </div>
     </div>
   );

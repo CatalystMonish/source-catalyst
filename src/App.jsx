@@ -11,6 +11,7 @@ import { Navigate } from "react-router-dom";
 import { UserAuth } from "./context/AuthContext";
 import ProjectsScreen from "./screens/ProjectsScreen";
 import NewPostScreen from "./screens/NewPostScreen";
+import VideoPlayer from "./screens/VideoPlayer";
 
 function App() {
   return (
@@ -24,6 +25,14 @@ function App() {
               element={
                 <Protected>
                   <NewPostScreen />
+                </Protected>
+              }
+            />
+            <Route
+              path="/player"
+              element={
+                <Protected>
+                  <VideoPlayer />
                 </Protected>
               }
             />
