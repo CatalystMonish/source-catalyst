@@ -11,10 +11,17 @@ import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { SphereSpinner } from "react-spinners-kit";
 
+import { useNavigate } from "react-router-dom";
 function HomeScreen() {
   const [loading, setLoading] = useState(true);
   const { logOut } = UserAuth();
   const [posts, setPosts] = useState([]);
+
+  const navigate = useNavigate();
+
+  const navigateOngoingProject = async () => {
+    navigate("/ongoing");
+  };
 
   const handleSignOut = async () => {
     try {
@@ -67,7 +74,10 @@ function HomeScreen() {
     <div className="min-h-screen bg-light py-[4.625rem]">
       <div className="mx-m-15">
         <TitleBold text="ONGOING PROJECT" />
-        <div className="flex justify-center rounded-md bg-white py-[40px]">
+        <div
+          onClick={navigateOngoingProject}
+          className="flex justify-center rounded-md bg-white py-[40px]"
+        >
           {/* empty project div */}
           <p className="text-center font-lexend text-content font-content">
             Choose a Project Now

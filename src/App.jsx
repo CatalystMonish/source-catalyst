@@ -6,6 +6,7 @@ import JourneyScreen from "./screens/JourneyScreen";
 import MentorScreen from "./screens/MentorScreen";
 import EventsScreen from "./screens/EventsScreen";
 import { AuthContextProvider } from "./context/AuthContext";
+
 import Protected from "./components/Protected";
 import { Navigate } from "react-router-dom";
 import { UserAuth } from "./context/AuthContext";
@@ -13,6 +14,7 @@ import ProjectsScreen from "./screens/ProjectsScreen";
 import NewPostScreen from "./screens/NewPostScreen";
 import VideoPlayer from "./screens/VideoPlayer";
 import ProfileScreen from "./screens/ProfileScreen";
+import OngoingProjectScreen from "./screens/OngoingProjectScreen";
 
 function App() {
   return (
@@ -26,6 +28,14 @@ function App() {
               element={
                 <Protected>
                   <NewPostScreen />
+                </Protected>
+              }
+            />
+            <Route
+              path="/ongoing"
+              element={
+                <Protected>
+                  <OngoingProjectScreen />
                 </Protected>
               }
             />
