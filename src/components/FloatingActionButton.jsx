@@ -1,8 +1,17 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 function FloatingActionButton() {
+  const navigate = useNavigate();
+
+  const navigateNewPost = async () => {
+    navigate("/newpost");
+  };
+
   return (
-    <div className="fixed bottom-20 right-4 rounded-full bg-primary p-4 text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+    <div
+      onClick={navigateNewPost}
+      className="fixed bottom-20 right-4 rounded-full bg-primary p-4 text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+    >
       <svg
         strokeWidth={20}
         xmlns="http://www.w3.org/2000/svg"

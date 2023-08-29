@@ -10,6 +10,7 @@ import Protected from "./components/Protected";
 import { Navigate } from "react-router-dom";
 import { UserAuth } from "./context/AuthContext";
 import ProjectsScreen from "./screens/ProjectsScreen";
+import NewPostScreen from "./screens/NewPostScreen";
 
 function App() {
   return (
@@ -18,6 +19,14 @@ function App() {
         <Router>
           <Routes>
             <Route path="/login" exact element={<LoginScreen />} />
+            <Route
+              path="/newpost"
+              element={
+                <Protected>
+                  <NewPostScreen />
+                </Protected>
+              }
+            />
 
             <Route element={<HomeLayout />}>
               <Route

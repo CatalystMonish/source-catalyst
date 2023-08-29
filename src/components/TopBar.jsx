@@ -1,23 +1,33 @@
 import React from "react";
 import pythonImg from "../images/python.png";
 
+import { useNavigate } from "react-router-dom";
+
 function TopBar() {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate("/"); // Go back one step in history
+  };
+
   return (
     <div className="fixed top-0 z-10 flex h-[4rem] w-full flex-row items-center bg-white font-lexend text-heading font-heading shadow-md">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className="ml-m-20 h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-        />
-      </svg>
+      <div>
+        <svg
+          onClick={goBack}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="ml-m-20 h-6 w-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+          />
+        </svg>
+      </div>
 
       <p className=" font-poppins ml-m-15 py-4 font-semibold ">
         Source Catalyst

@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Outlet,
-} from "react-router-dom";
-import NavBar from "../components/Navbar";
-import HomeScreen from "../screens/HomeScreen";
-import JourneyScreen from "../screens/JourneyScreen";
-import MentorScreen from "../screens/MentorScreen";
+import { Outlet } from "react-router-dom";
 import TopBar from "../components/TopBar";
-import EventsScreen from "../screens/EventsScreen";
 import Navbar from "../components/NavbarNew";
 
 function HomeLayout() {
