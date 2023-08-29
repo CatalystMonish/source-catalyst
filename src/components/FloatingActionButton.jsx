@@ -4,7 +4,7 @@ function FloatingActionButton() {
   const navigate = useNavigate();
 
   const navigateNewPost = async () => {
-    navigate("/player");
+    navigate("/profile");
   };
 
   return (

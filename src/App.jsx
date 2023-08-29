@@ -12,6 +12,7 @@ import { UserAuth } from "./context/AuthContext";
 import ProjectsScreen from "./screens/ProjectsScreen";
 import NewPostScreen from "./screens/NewPostScreen";
 import VideoPlayer from "./screens/VideoPlayer";
+import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
   return (
@@ -33,6 +34,14 @@ function App() {
               element={
                 <Protected>
                   <VideoPlayer />
+                </Protected>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Protected>
+                  <ProfileScreen />
                 </Protected>
               }
             />
