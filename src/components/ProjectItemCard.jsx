@@ -1,15 +1,20 @@
 import React from "react";
 import SkillPill from "./SkillPill";
 
-const ProjectItemCard = () => {
+const ProjectItemCardVertical = () => {
   return (
-    <div className="flex rounded-lg bg-white">
-      <div className="flex  justify-center p-s-10">
-        <div className="flex h-full w-1/2 max-w-[300px] flex-shrink-0 items-center justify-center  rounded-lg bg-light object-cover py-s-15">
+    <div className="flex  rounded-lg bg-white">
+      <div className="mx-auto flex flex-col justify-center p-s-10">
+        <div className="relative flex h-[8.875rem] w-[12.25rem] flex-shrink-0 items-center overflow-clip  rounded-lg   py-s-15">
           <img
             alt="project_thumbnail"
             src="https://media-files.vidstack.io/poster.png"
-            className="h-fit w-fit rounded-sm"
+            className=" absolute h-[8.875rem] w-[12.25rem]  rounded-sm object-fill blur-[3px]"
+          />
+          <img
+            alt="project_thumbnail"
+            src="https://media-files.vidstack.io/poster.png"
+            className=" absolute h-[8.875rem] w-[12.25rem] rounded-sm object-contain"
           />
         </div>
         <div className="ml-m-10 flex flex-col">
@@ -62,4 +67,4 @@ const ProjectItemCard = () => {
   );
 };
 
-export default ProjectItemCard;
+export default ProjectItemCardVertical;

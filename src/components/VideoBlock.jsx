@@ -1,14 +1,24 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function VideoBlock() {
+  const navigate = useNavigate();
+
+  const openVideo = (async) => {
+    navigate("/player");
+  };
+
   return (
     <div>
-      <div className="my-m-10 flex rounded-md bg-light px-s-15 py-s-20">
+      <div
+        onClick={openVideo}
+        className="my-m-10 flex rounded-md bg-light px-s-15 py-s-20"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="h-[1.25rem] w-[1.25rem] text-primary"
+          className="h-[1.25rem] w-[1.25rem] text-[#9B51E0]"
         >
           <path
             fill-rule="evenodd"

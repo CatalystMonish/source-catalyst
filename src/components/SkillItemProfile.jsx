@@ -1,33 +1,19 @@
 import React, { useState, useEffect } from "react";
-import "atropos/css";
-import Atropos from "atropos";
+
 import pythonImg from "../images/python.png";
 import googleLogo from "../images/googleLogo.png";
 
 function SkillItemProfile() {
-  const myAtropos = Atropos({
-    el: ".my-atropos",
-    activeOffset: 40,
-  });
-
-  setTimeout(() => {
-    // destroy it when needed
-    myAtropos.destroy();
-  }, 10000);
-
   return (
-    <div className="h-[100px] w-[100px]">
-      <div className="atropos">
-        <div className="atropos-scale">
-          <div className="atropos-rotate">
-            <div className="atropos-inner items-center ">
-              <img src={pythonImg} data-atropos-offset="-5" />
-
-              <img src={googleLogo} data-atropos-offset="0" />
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="flex w-fit flex-col justify-center">
+      <img
+        alt="skill_img"
+        className=" h-[5.625rem] w-[5.625rem] rounded-full bg-white p-s-20 "
+        src={googleLogo}
+      />
+      <p className="text-center font-lexend text-content font-content">
+        Javascript
+      </p>
     </div>
   );
 }

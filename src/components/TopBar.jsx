@@ -11,6 +11,10 @@ function TopBar() {
     navigate("/"); // Go back one step in history
   };
 
+  const goProfile = () => {
+    navigate("/profile"); // Go back one step in history
+  };
+
   return (
     <div className="fixed top-0 z-10 flex h-[4rem] w-full flex-row items-center bg-white font-lexend text-heading font-heading shadow-md">
       <div>
@@ -66,7 +70,8 @@ function TopBar() {
       </svg>
 
       <img
-        className="mr-m-20 h-[2.125rem] w-[2.125rem] rounded-full bg-black"
+        onClick={goProfile}
+        className="mr-m-20 h-[2.125rem] w-[2.125rem] rounded-full bg-white"
         src={user?.photoURL}
         alt="Python Logo"
       />

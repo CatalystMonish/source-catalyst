@@ -4,6 +4,7 @@ import TaskAccordian from "../components/TaskAccordian";
 import TitleBold from "../components/TitleBold";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ProjectItemCardVertical from "../components/ProjectItemCardVertical";
 
 function OngoingProjectScreen() {
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ function OngoingProjectScreen() {
   return (
     <div className=" bg-light">
       <div className="z-10 flex h-[4rem] w-full flex-row items-center bg-white font-lexend text-heading font-heading ">
-        <div className="flex">
+        <div className="flex items-center">
           <svg
             onClick={goBack}
             xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +122,10 @@ function OngoingProjectScreen() {
             <div className="section-transition">
               <TitleBold text="TITLE" />
 
-              <ProjectItemCard />
+              <div className="grid grid-cols-2 gap-2">
+                <ProjectItemCardVertical />
+                <ProjectItemCardVertical />
+              </div>
             </div>
           )}
         </div>
