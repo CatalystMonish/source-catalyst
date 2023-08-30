@@ -17,6 +17,7 @@
 
 body {
   touch-action: manipulation;
+  background-color: #f3f3f3;
 }
 
 .position2 {

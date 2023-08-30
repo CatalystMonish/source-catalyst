@@ -1,5 +1,8 @@
+import SkillPill from "../components/SkillPill";
+import ProjectItemCard from "../components/ProjectItemCard";
+import TaskAccordian from "../components/TaskAccordian";
 import TitleBold from "../components/TitleBold";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function OngoingProjectScreen() {
@@ -7,8 +10,56 @@ function OngoingProjectScreen() {
   const goBack = () => {
     navigate("/"); // Go back one step in history
   };
+
+  const [activeTab, setActiveTab] = useState("Roadmap");
+
+  const sampleTasks = [
+    {
+      title: "Learn React Basics",
+      content: "Understand JSX, state management, and component lifecycle.",
+    },
+    {
+      title: "Setup Python Environment",
+      content:
+        "Install Python, setup virtualenv, and install necessary packages.",
+    },
+    {
+      title: "Design UI/UX",
+      content: "Sketch the basic UI/UX design and create wireframes.",
+    },
+    {
+      title: "Database Design",
+      content: "Normalize the database and create the necessary tables.",
+    },
+    {
+      title: "API Endpoints",
+      content: "Create RESTful API endpoints using Express.js.",
+    },
+    {
+      title: "Front-end Validation",
+      content: "Use client-side validation for forms using JavaScript.",
+    },
+    {
+      title: "Server-side Validation",
+      content:
+        "Implement server-side validation to protect against malicious input.",
+    },
+    {
+      title: "User Authentication",
+      content: "Implement JWT based authentication and OAuth.",
+    },
+    {
+      title: "Optimize Performance",
+      content: "Use lazy loading, code splitting and optimize images.",
+    },
+    {
+      title: "Final Testing",
+      content: "Perform unit tests, integration tests, and end-to-end tests.",
+    },
+  ];
+
   return (
-    <div>
+    <div className=" bg-light">
       <div className="z-10 flex h-[4rem] w-full flex-row items-center bg-white font-lexend text-heading font-heading ">
         <div className="flex">
           <svg
@@ -33,17 +84,46 @@ function OngoingProjectScreen() {
         </div>
       </div>
       <div className="h-screen">
-        <div className="flex justify-between bg-white px-[1.5rem] pb-s-15">
-          <button className="h-[3.25rem] w-[10rem] rounded-lg bg-primary font-lexend text-label font-label text-white">
+        <div className=" flex justify-center space-x-4  bg-white px-[1.5rem] pb-s-15">
+          <button
+            onClick={() => setActiveTab("Roadmap")}
+            className={`h-[3.25rem] w-[10rem] rounded-lg font-lexend text-label font-label ${
+              activeTab === "Roadmap" ? "bg-primary text-white" : "bg-light"
+            }`}
+          >
             Roadmap
           </button>
-          <button className="h-[3.25rem] w-[10rem] rounded-lg bg-light font-lexend text-label font-label ">
+          <button
+            onClick={() => setActiveTab("About")}
+            className={`h-[3.25rem] w-[10rem] rounded-lg font-lexend text-label font-label ${
+              activeTab === "About" ? "bg-primary text-white" : "bg-light"
+            }`}
+          >
             About
           </button>
         </div>
 
-        <div className="mx-m-15 ">
-          <TitleBold text="TASKS" />
+        <div className="mx-m-15">
+          {activeTab === "Roadmap" && (
+            <div className="section-transition">
+              <TitleBold text="TASKS" />
+              {sampleTasks.map((task, index) => (
+                <TaskAccordian
+                  title={task.title}
+                  content={task.content}
+                  number={index + 1}
+                  key={index}
+                />
+              ))}
+            </div>
+          )}
+          {activeTab === "About" && (
+            <div className="section-transition">
+              <TitleBold text="TITLE" />
+
+              <ProjectItemCard />
+            </div>
+          )}
         </div>
       </div>
     </div>

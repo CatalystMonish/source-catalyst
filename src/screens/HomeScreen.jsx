@@ -14,7 +14,7 @@ import { SphereSpinner } from "react-spinners-kit";
 import { useNavigate } from "react-router-dom";
 function HomeScreen() {
   const [loading, setLoading] = useState(true);
-  const { logOut } = UserAuth();
+  const { logOut, user } = UserAuth();
   const [posts, setPosts] = useState([]);
 
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function HomeScreen() {
   };
 
   const fetchAuthorData = async (authorId) => {
-    const docRef = doc(db, "Users", authorId);
+    const docRef = doc(db, "users", authorId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       return docSnap.data();

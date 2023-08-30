@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import {
   GoogleAuthProvider,
   signInWithRedirect,
@@ -24,7 +26,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const checkAndCreateUserDoc = async (currentUser) => {
-    const userRef = doc(db, "Users", currentUser.uid);
+    const userRef = doc(db, "users", currentUser.uid);
     const userSnap = await getDoc(userRef);
 
     if (!userSnap.exists()) {
@@ -36,6 +38,23 @@ export const AuthContextProvider = ({ children }) => {
         emailVerified,
         // Add any other necessary fields here.
       });
+    }
+  };
+
+  const uploadFileToStorage = async (file) => {
+    if (!file) {
+      alert("No file selected.");
+      return;
+    }
+
+    const storage = getStorage();
+    const storageRef = ref(storage, `users/${user.uid}/resume/${file.name}`);
+
+    try {
+      await uploadBytes(storageRef, file);
+      alert("File uploaded successfully");
+    } catch (error) {
+      alert("An error occurred while uploading the file");
     }
   };
 
@@ -55,7 +74,9 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ googleSignIn, logOut, user }}>
+    <AuthContext.Provider
+      value={{ googleSignIn, logOut, user, uploadFileToStorage }}
+    >
       {children}
     </AuthContext.Provider>
   );

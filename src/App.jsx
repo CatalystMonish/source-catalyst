@@ -15,7 +15,7 @@ import NewPostScreen from "./screens/NewPostScreen";
 import VideoPlayer from "./screens/VideoPlayer";
 import ProfileScreen from "./screens/ProfileScreen";
 import OngoingProjectScreen from "./screens/OngoingProjectScreen";
-import AdminPanel from "./screens/AdminScreen";
+import CompleteProfile from "./screens/CompleteProfile";
 
 function App() {
   return (
@@ -32,19 +32,20 @@ function App() {
                 </Protected>
               }
             />
-            <Route
-              path="/admin"
-              element={
-                <Protected>
-                  <AdminPanel />
-                </Protected>
-              }
-            />
+
             <Route
               path="/ongoing"
               element={
                 <Protected>
                   <OngoingProjectScreen />
+                </Protected>
+              }
+            />
+            <Route
+              path="/complete_profile"
+              element={
+                <Protected>
+                  <CompleteProfile />
                 </Protected>
               }
             />

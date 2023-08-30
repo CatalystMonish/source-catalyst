@@ -1,10 +1,12 @@
 import React from "react";
 import pythonImg from "../images/python.png";
+import { UserAuth } from "../context/AuthContext";
 
 import { useNavigate } from "react-router-dom";
 
 function TopBar() {
   const navigate = useNavigate();
+  const { user } = UserAuth();
   const goBack = () => {
     navigate("/"); // Go back one step in history
   };
@@ -65,7 +67,7 @@ function TopBar() {
 
       <img
         className="mr-m-20 h-[2.125rem] w-[2.125rem] rounded-full bg-black"
-        src={pythonImg}
+        src={user?.photoURL}
         alt="Python Logo"
       />
     </div>

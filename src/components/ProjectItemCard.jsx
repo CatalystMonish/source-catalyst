@@ -1,27 +1,65 @@
-import React from 'react'
+import React from "react";
+import SkillPill from "./SkillPill";
 
 const ProjectItemCard = () => {
   return (
-    <div className='flex flex-row px-3 py-4 w-full h-auto rounded-xl bg-white'>
-      <div className='flex flex-col'>
-        <p className='font-semibold text-left text-lg font-poppins space-y-2 px-10 mr-4'>Python Installation</p>
-        <div>
-          <div className='flex items-center'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#000000"
-              height="18px" width="18px">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd" />
-            </svg><span className='px-2'>20 mins</span>
+    <div className="flex rounded-lg bg-white">
+      <div className="flex  justify-center p-s-10">
+        <div className="flex h-full w-1/2 max-w-[300px] flex-shrink-0 items-center justify-center  rounded-lg bg-light object-cover py-s-15">
+          <img
+            alt="project_thumbnail"
+            src="https://media-files.vidstack.io/poster.png"
+            className="h-fit w-fit rounded-sm"
+          />
+        </div>
+        <div className="ml-m-10 flex flex-col">
+          <p className="font-lexend text-content font-content">
+            Secure Password Generator Using Python
+          </p>
+          <p className="mt-[0.3125rem] font-lexend text-small font-small">
+            Skills Learned
+          </p>
+          <div className="mt-[0.3125rem] flex flex-wrap gap-1">
+            <SkillPill />
+            <SkillPill />
+          </div>
+
+          <div className="mt-m-10 flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="h-[0.9375rem] w-[0.9375rem] text-text-light"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"
+                clipRule="evenodd"
+              />
+            </svg>
+
+            <p className=" ml-[0.125rem] font-lexend text-small-light font-small-light text-text-light">
+              30mins
+            </p>
+          </div>
+          <div className="mt-[0.3125rem] flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="h-[0.9375rem] w-[0.9375rem] text-text-light"
+            >
+              <path d="M10.75 16.82A7.462 7.462 0 0115 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0018 15.06v-11a.75.75 0 00-.546-.721A9.006 9.006 0 0015 3a8.963 8.963 0 00-4.25 1.065V16.82zM9.25 4.065A8.963 8.963 0 005 3c-.85 0-1.673.118-2.454.339A.75.75 0 002 4.06v11a.75.75 0 00.954.721A7.506 7.506 0 015 15.5c1.579 0 3.042.487 4.25 1.32V4.065z" />
+            </svg>
+
+            <p className=" ml-[0.125rem] font-lexend text-small-light font-small-light text-text-light">
+              30mins
+            </p>
           </div>
         </div>
       </div>
-      <div className='flex items-center mx-auto'>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#2E7CF6" className="w-4 h-4" height="16px" width="16px">
-          <path d="M3.25 4A2.25 2.25 0 001 6.25v7.5A2.25 2.25 0 003.25 16h7.5A2.25 2.25 0 0013 13.75v-7.5A2.25 2.25 0 0010.75 4h-7.5zM19 4.75a.75.75 0 00-1.28-.53l-3 3a.75.75 0 00-.22.53v4.5c0 .199.079.39.22.53l3 3a.75.75 0 001.28-.53V4.75z" />
-        </svg>
-        </div>
-        
-      </div>
-      )
-}
+    </div>
+  );
+};
 
-      export default ProjectItemCard
+export default ProjectItemCard;
