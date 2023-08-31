@@ -1,4 +1,5 @@
 # Source Catalyst Client App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c22f0f0e-07a3-48e1-89f9-c997b811ca54/deploy-status)](https://app.netlify.com/sites/source-catalyst/deploys)
 
 ## 🌐 Website
 
