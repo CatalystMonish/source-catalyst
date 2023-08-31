@@ -4,6 +4,7 @@ import PageBar from "../components/PageBar";
 import React from "react";
 import CheckListItem from "../components/CheckListItem";
 import { useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import { doc, setDoc, collection, addDoc } from "firebase/firestore";
@@ -73,13 +74,16 @@ function NewPostScreen() {
                 <TitleBold text="POST CONTENT" />
                 <span>{postContent.length}/1000</span>
               </div>
-              <textarea
+
+              <TextareaAutosize
+                minRows={2}
+                maxRows={10}
                 maxLength="1000"
                 placeholder="Write your content"
                 value={postContent}
                 onChange={(e) => setPostContent(e.target.value)}
                 className=" flex w-full rounded-lg bg-white px-s-15  py-s-17 font-lexend text-label  "
-              ></textarea>
+              />
 
               <TitleBold text="CHECKLIST" />
               <CheckListItem
