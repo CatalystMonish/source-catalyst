@@ -8,7 +8,7 @@ function HomeLayout() {
     <div>
       <TopBar />
       <div className="flex flex-col items-center">
-        <div className="w-full max-w-[1920px]">
+        <div className="w-full max-w-[800px]">
           <Outlet />
         </div>
       </div>

@@ -84,6 +84,7 @@ function OngoingProjectScreen() {
           </p>
         </div>
       </div>
+
       <div className="h-screen">
         <div className=" flex justify-center space-x-4  bg-white px-[1.5rem] pb-s-15">
           <button
@@ -103,31 +104,34 @@ function OngoingProjectScreen() {
             About
           </button>
         </div>
+        <div className="flex flex-col items-center">
+          <div className="w-full max-w-[1500px]">
+            <div className="mx-m-15">
+              {activeTab === "Roadmap" && (
+                <div className="section-transition">
+                  <TitleBold text="TASKS" />
+                  {sampleTasks.map((task, index) => (
+                    <TaskAccordian
+                      title={task.title}
+                      content={task.content}
+                      number={index + 1}
+                      key={index}
+                    />
+                  ))}
+                </div>
+              )}
+              {activeTab === "About" && (
+                <div className="section-transition">
+                  <TitleBold text="TITLE" />
 
-        <div className="mx-m-15">
-          {activeTab === "Roadmap" && (
-            <div className="section-transition">
-              <TitleBold text="TASKS" />
-              {sampleTasks.map((task, index) => (
-                <TaskAccordian
-                  title={task.title}
-                  content={task.content}
-                  number={index + 1}
-                  key={index}
-                />
-              ))}
+                  <div className="grid grid-cols-2 gap-2">
+                    <ProjectItemCardVertical />
+                    <ProjectItemCardVertical />
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-          {activeTab === "About" && (
-            <div className="section-transition">
-              <TitleBold text="TITLE" />
-
-              <div className="grid grid-cols-2 gap-2">
-                <ProjectItemCardVertical />
-                <ProjectItemCardVertical />
-              </div>
-            </div>
-          )}
+          </div>
         </div>
       </div>
     </div>

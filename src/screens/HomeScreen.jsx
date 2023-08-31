@@ -10,6 +10,7 @@ import pythonImg from "../images/python.png";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { SphereSpinner } from "react-spinners-kit";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 import { useNavigate } from "react-router-dom";
 function HomeScreen() {
@@ -74,35 +75,57 @@ function HomeScreen() {
     <div className="min-h-screen bg-light py-[4.625rem]">
       <div className="mx-m-15">
         <TitleBold text="ONGOING PROJECT" />
-        <div
+        {/* <div
           onClick={navigateOngoingProject}
           className="flex justify-center rounded-md bg-white py-[40px]"
         >
-          {/* empty project div */}
           <p className="text-center font-lexend text-content font-content">
             Choose a Project Now
           </p>
+        </div> */}
+        <div
+          onClick={navigateOngoingProject}
+          className="flex w-full flex-col justify-center rounded-lg bg-white p-s-15"
+        >
+          <p className="font-lexend text-content font-content">
+            Secure Password Generator
+          </p>
+          <ProgressBar
+            className="mt-m-10 w-full"
+            completed={180}
+            height="0.625rem"
+            isLabelVisible={false}
+            bgColor="#219653"
+            maxCompleted={200}
+          />
+          <p className="ml-auto mt-m-10 font-lexend text-content-body font-content-body text-text-light">
+            4 Tasks Left
+          </p>
         </div>
+        {/* empty project div */}
+
         <TitleBold text="FROM OUR COMMUNITY" />
-        <div className="gap-2 space-y-2 md:grid md:grid-cols-2 md:space-y-0">
-          {loading ? (
-            <div className="flex items-center justify-center py-5">
-              <SphereSpinner size={30} color="#2E7CF6" loading={loading} />
-            </div>
-          ) : (
-            posts.map((post) => (
-              <CardPostItem
-                key={post.id}
-                postId={post.id}
-                authorName={post.authorName}
-                authorIntro={post.authorIntro}
-                postTitle={post.postTitle}
-                postContent={post.postContent}
-                imgSrc={post.authorImg}
-                likesCount={post.likesCount}
-              />
-            ))
-          )}
+        <div className="flex justify-center">
+          <div className="max-w-[500px] items-center justify-center space-y-2 md:space-y-5 ">
+            {loading ? (
+              <div className="flex items-center justify-center py-5">
+                <SphereSpinner size={30} color="#2E7CF6" loading={loading} />
+              </div>
+            ) : (
+              posts.map((post) => (
+                <CardPostItem
+                  key={post.id}
+                  postId={post.id}
+                  authorName={post.authorName}
+                  authorIntro={post.authorIntro}
+                  postTitle={post.postTitle}
+                  postContent={post.postContent}
+                  imgSrc={post.authorImg}
+                  likesCount={post.likesCount}
+                />
+              ))
+            )}
+          </div>
         </div>
 
         {/* <TitleBold text="SUPPORT" />
