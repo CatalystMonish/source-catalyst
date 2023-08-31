@@ -106,7 +106,7 @@ function HomeScreen() {
 
         <TitleBold text="FROM OUR COMMUNITY" />
         <div className="flex justify-center">
-          <div className="max-w-[500px] items-center justify-center space-y-2 md:space-y-5 ">
+          <div className=" items-center justify-center space-y-2 md:space-y-5 ">
             {loading ? (
               <div className="flex items-center justify-center py-5">
                 <SphereSpinner size={30} color="#2E7CF6" loading={loading} />

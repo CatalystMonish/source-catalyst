@@ -36,7 +36,7 @@ function TopBar() {
       </div>
 
       <p className=" ml-m-15 py-4 font-lexend text-heading font-heading ">
-        Source
+        Source Catalyst
       </p>
 
       <svg
