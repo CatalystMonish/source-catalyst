@@ -4,7 +4,6 @@ import TaskAccordian from "../components/TaskAccordian";
 import TitleBold from "../components/TitleBold";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ProjectItemCardVertical from "../components/ProjectItemCardVertical";
 
 function OngoingProjectScreen() {
   const navigate = useNavigate();
@@ -124,10 +123,7 @@ function OngoingProjectScreen() {
                 <div className="section-transition">
                   <TitleBold text="TITLE" />
 
-                  <div className="grid grid-cols-2 gap-2">
-                    <ProjectItemCardVertical />
-                    <ProjectItemCardVertical />
-                  </div>
+                  <div className="grid grid-cols-2 gap-2"></div>
                 </div>
               )}
             </div>

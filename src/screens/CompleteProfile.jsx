@@ -2,6 +2,7 @@ import TitleBold from "../components/TitleBold";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { UserAuth } from "../context/AuthContext";
+import TextareaAutosize from "react-textarea-autosize";
 
 function CompleteProfile() {
   const [file, setFile] = useState(null);
@@ -54,15 +55,26 @@ function CompleteProfile() {
         </p>
       </div>
       <div className="mx-m-15 min-h-screen py-[4rem]">
-        <TitleBold text="BIO" />
+        <TitleBold text="CHOOSE A USERNAME" />
         <input
-          maxLength="50"
-          placeholder="Enter title here"
+          maxLength="10"
+          placeholder="Enter a username"
           type="text"
           //   value={postTitle}
           //   onChange={(e) => setPostTitle(e.target.value)}
           className=" flex w-full rounded-lg bg-white px-s-15  py-s-17 font-lexend text-label  "
         ></input>
+        <TitleBold text="BIO" />
+        <TextareaAutosize
+          minRows={2}
+          maxRows={10}
+          maxLength="200"
+          placeholder="Enter bio here"
+          type="text"
+          //   value={postTitle}
+          //   onChange={(e) => setPostTitle(e.target.value)}
+          className=" flex w-full rounded-lg bg-white px-s-15  py-s-17 font-lexend text-label  "
+        />
 
         <TitleBold text="SKILLS" />
         <input
