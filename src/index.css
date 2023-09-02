@@ -8,6 +8,7 @@
   font-family: "lexend";
   src: url("../src/fonts/LexendDeca-VariableFont_wght.ttf");
 }
+
 .position1,
 .position3 {
   transform: translateY(-6.25rem) scale(0.9);
@@ -44,4 +45,12 @@ body {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #2e7cf6; /* Change the color as you wish */
+}
+
+.slick-dots li {
+  margin: 0 1px; /* Adjust as needed */
 }
