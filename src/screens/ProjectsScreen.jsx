@@ -12,22 +12,6 @@ function ProjectsScreen() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchSkillData = async (skillId) => {
-    try {
-      const docRef = doc(db, "skills", skillId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        return docSnap.data();
-      } else {
-        console.log("No such skill!");
-        return null;
-      }
-    } catch (error) {
-      console.log("Error fetching skill:", error);
-      return null;
-    }
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,9 +34,18 @@ function ProjectsScreen() {
           }
 
           // Fetching skill data from 'skills' collection
-          const skillData = data.skills
-            ? await Promise.all(data.skills.map(fetchSkillData))
-            : [];
+          const skillIds = data.skills || [];
+          const skillData = [];
+          for (const skillId of skillIds) {
+            try {
+              const skillDoc = await getDoc(
+                doc(db, "skills", skillId.split("/")[1])
+              );
+              skillData.push(skillDoc.data());
+            } catch (error) {
+              console.log("Error fetching skill:", error);
+            }
+          }
 
           projectData.push({
             id: doc.id,
@@ -74,16 +67,21 @@ function ProjectsScreen() {
   }, []);
 
   const settings = {
-    // your slider settings
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
   };
 
   return (
     <div className="mt-[4.625rem] bg-light">
-      <div className="mx-m-10"></div>
       <TitleBold text="LATEST PROJECTS" />
       <div>
         {loading ? (
-          <p>Loading...</p>
+          <SphereSpinner />
         ) : (
           <Slider {...settings}>
             {projects.map((project) => (

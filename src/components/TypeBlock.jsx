@@ -45,6 +45,9 @@ const Type3SVG = () => (
 const TypeBlock = ({ type }) => {
   let SVGComponent = null;
   let text = "";
+  console.log("type recieved", type);
+
+  type = parseInt(type);
 
   switch (type) {
     case 1:

@@ -12,6 +12,7 @@ const ProjectItemCard = ({
   skills,
   includedTypes,
 }) => {
+  console.log("skills recieved", skills);
   return (
     <div className="flex justify-center">
       <div className="flex max-w-[300px] flex-col rounded-lg bg-white pb-s-15">
@@ -36,9 +37,9 @@ const ProjectItemCard = ({
             <p className="mt-m-10 font-lexend text-small font-small ">SKILLS</p>
           </div>
           <div className="mt-m-5 flex flex-row flex-wrap gap-1">
-            {/* {skills.map((skill, index) => (
+            {skills.map((skill, index) => (
               <SkillPill key={index} skill={skill} />
-            ))} */}
+            ))}
           </div>
           <p className="mt-m-10 font-lexend text-small font-small">INCLUDED</p>
           <div className="mt-m-5 flex gap-1">
