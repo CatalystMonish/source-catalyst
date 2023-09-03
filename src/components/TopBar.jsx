@@ -11,6 +11,10 @@ function TopBar() {
     navigate("/"); // Go back one step in history
   };
 
+  const goChats = () => {
+    navigate("/chats");
+  };
+
   const goProfile = () => {
     navigate("/profile"); // Go back one step in history
   };
@@ -40,6 +44,7 @@ function TopBar() {
       </p>
 
       <svg
+        onClick={goChats}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

@@ -16,6 +16,7 @@ import VideoPlayer from "./screens/VideoPlayer";
 import ProfileScreen from "./screens/ProfileScreen";
 import OngoingProjectScreen from "./screens/OngoingProjectScreen";
 import CompleteProfile from "./screens/CompleteProfile";
+import ChatScreen from "./screens/ChatScreen";
 
 function App() {
   return (
@@ -38,6 +39,14 @@ function App() {
               element={
                 <Protected>
                   <OngoingProjectScreen />
+                </Protected>
+              }
+            />
+            <Route
+              path="/chats"
+              element={
+                <Protected>
+                  <ChatScreen />
                 </Protected>
               }
             />
