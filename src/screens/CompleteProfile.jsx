@@ -7,6 +7,8 @@ import TextareaAutosize from "react-textarea-autosize";
 function CompleteProfile() {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [skills, setSkills] = useState([]);
+  const [newSkill, setNewSkill] = useState("");
 
   const { googleSignIn, user, logOut, uploadFileToStorage } = UserAuth();
 
@@ -32,18 +34,16 @@ function CompleteProfile() {
     }
   };
 
-  // Your existing code
+   const removeSkill = (index) => {
+    const updatedSkills = [...skills];
+    updatedSkills.splice(index, 1);
+    setSkills(updatedSkills);
+  };
 
-  const uploadFile = async () => {
-    if (file && !uploading) {
-      setUploading(true);
-      try {
-        await uploadFileToStorage(file);
-      } catch (error) {
-        alert("An error occurred while uploading the file");
-      } finally {
-        setUploading(false);
-      }
+  const addSkill = () => {
+    if (newSkill.trim() !== "") {
+      setSkills([...skills, newSkill]);
+      setNewSkill("");
     }
   };
 
@@ -56,7 +56,7 @@ function CompleteProfile() {
       </div>
       <div className="mx-m-15 min-h-screen py-[4rem]">
         <TitleBold text="CHOOSE A USERNAME" />
-        <input
+       <input
           maxLength="10"
           placeholder="Enter a username"
           type="text"
@@ -64,8 +64,9 @@ function CompleteProfile() {
           //   onChange={(e) => setPostTitle(e.target.value)}
           className=" flex w-full rounded-lg bg-white px-s-15  py-s-17 font-lexend text-label  "
         ></input>
+        
         <TitleBold text="BIO" />
-        <TextareaAutosize
+         <TextareaAutosize
           minRows={2}
           maxRows={10}
           maxLength="200"
@@ -75,16 +76,39 @@ function CompleteProfile() {
           //   onChange={(e) => setPostTitle(e.target.value)}
           className=" flex w-full rounded-lg bg-white px-s-15  py-s-17 font-lexend text-label  "
         />
-
+        
         <TitleBold text="SKILLS" />
         <input
           maxLength="50"
-          placeholder="Enter skills here"
+          placeholder="Enter skills here and press Enter"
           type="text"
-          //   value={postTitle}
-          //   onChange={(e) => setPostTitle(e.target.value)}
-          className=" flex w-full rounded-lg bg-white px-s-15  py-s-17 font-lexend text-label  "
-        ></input>
+          value={newSkill}
+          onChange={(e) => setNewSkill(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              addSkill();
+              e.preventDefault(); // Prevent form submission on Enter key press
+            }
+          }}
+          className="flex w-full rounded-lg bg-white px-s-15 py-s-17 font-lexend text-label"
+        />
+        <div className="mt-2">
+          {skills.map((skill, index) => (
+            <div
+              key={index}
+              className="bg-blue-200 rounded-md p-2 inline-flex items-center mr-2"
+            >
+              {skill}
+              <button
+                onClick={() => removeSkill(index)}
+                className="ml-2 p-1 rounded-full bg-red-500 text-white hover:bg-red-600"
+              >
+                X
+              </button>
+            </div>
+          ))}
+        </div>
+        
         <TitleBold text="RESUME" />
         <div
           {...getRootProps()}
@@ -102,8 +126,16 @@ function CompleteProfile() {
             {file ? file.name : "Select a File <br /> (pdf, word, jpg)"}
           </p>
         </div>
-        <button onClick={fireUpload}>
-          {uploading ? "Uploading..." : "Upload"}
+        
+        <TitleBold text="WORK" />
+        <div className="w-full h-auto bg-white rounded-lg flex flex-col px-2">
+          <p className="font-bold">Seva Fest</p>
+          <p className="text-lightgray">It was a project about saving lives and doing shit, like idk man</p>
+          <a href="https://github.com/CatalystMonish/source-catalyst" className="text-blue-500">https://github.com/CatalystMonish/source-catalyst</a>
+
+        </div>
+        <button onClick={fireUpload} className="text-center flex w-full h-12 items-center justify-center bg-green rounded-full font-bold px-s-15 py-s-17 text-white mt-3">
+          {uploading ? "Uploading..." : "Save Information"}
         </button>
       </div>
     </div>

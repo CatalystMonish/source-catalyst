@@ -17,6 +17,9 @@ import ProfileScreen from "./screens/ProfileScreen";
 import OngoingProjectScreen from "./screens/OngoingProjectScreen";
 import CompleteProfile from "./screens/CompleteProfile";
 import ChatScreen from "./screens/ChatScreen";
+import ConnectScreen from "./screens/ConnectScreen";
+import Chat from "./screens/Chat";
+
 
 function App() {
   return (
@@ -47,6 +50,14 @@ function App() {
               element={
                 <Protected>
                   <ChatScreen />
+                </Protected>
+              }
+            />
+             <Route
+              path="/chat"
+              element={
+                <Protected>
+                  <Chat />
                 </Protected>
               }
             />
@@ -122,6 +133,15 @@ function App() {
                 element={
                   <Protected>
                     <EventsScreen />
+                  </Protected>
+                }
+              />
+
+               <Route
+                path="/connect"
+                element={
+                  <Protected>
+                    <ConnectScreen />
                   </Protected>
                 }
               />

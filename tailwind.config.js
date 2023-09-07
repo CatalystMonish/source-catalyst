@@ -33,6 +33,8 @@ module.exports = {
         "text-light": "#939393",
         light: "#F3F3F3",
         dark: "#000000",
+        green:"#219653",
+        lightgray:"#939393",
       },
       margin: {
         "m-5": "0.313rem",

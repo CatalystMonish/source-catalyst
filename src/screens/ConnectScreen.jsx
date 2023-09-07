@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase'; // Adjust the import path as needed
 import { collection, getDocs } from 'firebase/firestore';
-import Chat from './Chat';
-import { Link } from 'react-router-dom';
-import { UserAuth } from "../context/AuthContext";
 
-function ChatScreen() {
+function ConnectScreen({ onSelectUser }) {
   const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
     // Fetch the list of users from Firestore
@@ -34,12 +30,9 @@ function ChatScreen() {
   return (
     <div>
       <h1>User List</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <ul>
         {users.map((user) => (
-          <div
-            key={user.uid}
-            className="border p-4 rounded-lg shadow-md"
-          >
+          <li key={user.uid}>
             <strong>UID:</strong> {user.uid}<br />
             <strong>Email:</strong> {user.email}<br />
             {user.displayName && (
@@ -47,15 +40,12 @@ function ChatScreen() {
                 <strong>Display Name:</strong> {user.displayName}
               </span>
             )}
-              <Link to="/chat">
-              <button className='bg-green'onClick={() =>{setSelectedUser(user)}} >Chat</button>
-              </Link>
-          </div>
+            <button onClick={() => onSelectUser(user)}>Chat</button>
+          </li>
         ))}
-      </div>
-      {selectedUser && <Chat selecteduser={selectedUser} />}
+      </ul>
     </div>
   );
 }
 
-export default ChatScreen;
+export default ConnectScreen;
