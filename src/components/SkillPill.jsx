@@ -1,25 +1,34 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { getDownloadURL, ref } from "firebase/storage";
-import { storage } from "../firebase"; // Import your firebase storage
+import { doc, getDoc } from "firebase/firestore";
+import { db, storage } from "../firebase";
 
-function SkillPill({ skill }) {
+function SkillPill({ skillId }) {
+  const [skill, setSkill] = useState({});
   const [imageURL, setImageURL] = useState(null);
 
-  console.log("ref", skill.skillImage);
-
   useEffect(() => {
-    const fetchImage = async () => {
+    const fetchSkillData = async () => {
       try {
-        const url = await getDownloadURL(ref(storage, skill.skillImage));
-        setImageURL(url);
+        const skillDoc = await getDoc(doc(db, "skills", skillId));
+        if (skillDoc.exists) {
+          const skillData = skillDoc.data();
+          setSkill(skillData);
+
+          if (skillData.skillImage) {
+            const url = await getDownloadURL(
+              ref(storage, skillData.skillImage)
+            );
+            setImageURL(url);
+          }
+        }
       } catch (error) {
-        console.error("Error fetching skill image:", error);
+        console.error("Error fetching skill data:", error);
       }
     };
 
-    fetchImage();
-  }, [skill.skillImage]);
+    fetchSkillData();
+  }, [skillId]);
 
   return (
     <div className="flex w-fit items-center rounded-full bg-light p-[0.3125rem]">
@@ -36,12 +45,5 @@ function SkillPill({ skill }) {
     </div>
   );
 }
-
-// SkillPill.propTypes = {
-//   skill: PropTypes.shape({
-//     skillName: PropTypes.string.isRequired,
-//     skillImage: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
 
 export default SkillPill;

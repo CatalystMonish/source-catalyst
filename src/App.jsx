@@ -17,6 +17,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import OngoingProjectScreen from "./screens/OngoingProjectScreen";
 import CompleteProfile from "./screens/CompleteProfile";
 import ChatScreen from "./screens/ChatScreen";
+import ProjectDetailsScreen from "./screens/ProjectDetailsScreen";
 import ConnectScreen from "./screens/ConnectScreen";
 import Chat from "./screens/Chat";
 
@@ -44,9 +45,8 @@ function App() {
                 </Protected>
               }
             />
-
             <Route
-              path="/project-details"
+              path="/project-details/:id"
               element={
                 <Protected>
                   <ProjectDetailsScreen />

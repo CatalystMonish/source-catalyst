@@ -47,7 +47,7 @@ const ProjectItemCard = ({
           </div>
           <div className="mt-m-5 flex flex-row flex-wrap gap-1">
             {skills.map((skill, index) => (
-              <SkillPill key={index} skill={skill} />
+              <SkillPill key={index} skillId={skill} />
             ))}
           </div>
           <p className="mt-m-10 font-lexend text-small font-small">INCLUDED</p>

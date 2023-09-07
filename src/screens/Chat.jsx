@@ -15,7 +15,12 @@ const Chat = ({ selecteduser }) => {
   const [newMessage, setNewMessage] = useState("");
 
   // Firestore reference to the chat collection
-  const chatRef = collection(db, "chats", user.uid + "-" + selecteduser.uid, "messages");
+  const chatRef = collection(
+    db,
+    "chats",
+    user.uid + "-" + selecteduser.uid,
+    "messages"
+  );
 
   // Function to send a new message
   const sendMessage = async () => {
