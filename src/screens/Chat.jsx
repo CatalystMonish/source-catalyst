@@ -8,29 +8,34 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
+import { useParams } from "react-router-dom"; // Import useParams for extracting URL parameters
 
-const Chat = ({ selecteduser }) => {
+const Chat = () => {
   const { user } = UserAuth();
+  const { receiverId } = useParams(); // Extract receiverId from URL parameter
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
   // Firestore reference to the chat collection
-  const chatRef = collection(db, "chats", user.uid + "-" + selecteduser.uid, "messages");
+  const chatRef = collection(db, "chats", user.uid + "-" + receiverId, "messages");
 
   // Function to send a new message
-  const sendMessage = async () => {
-    if (newMessage.trim() === "") return;
+ const sendMessage = async () => {
+  if (!receiverId || newMessage.trim() === "") {
+    console.error("ReceiverId is undefined or newMessage is empty.");
+    return;
+  }
 
-    const messageData = {
-      sender: user.uid,
-      receiver: selecteduser.uid,
-      text: newMessage,
-      timestamp: new Date(),
-    };
-
-    await addDoc(chatRef, messageData);
-    setNewMessage("");
+  const messageData = {
+    sender: user.uid,
+    receiver: receiverId,
+    text: newMessage,
+    timestamp: new Date(),
   };
+
+  await addDoc(chatRef, messageData);
+  setNewMessage("");
+};
 
   // Function to listen for new messages
   useEffect(() => {
@@ -41,7 +46,7 @@ const Chat = ({ selecteduser }) => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [chatRef]);
 
   return (
     <div>
@@ -52,7 +57,7 @@ const Chat = ({ selecteduser }) => {
               <div>Me: {message.text}</div>
             ) : (
               <div>
-                {selecteduser.displayName || selecteduser.email}: {message.text}
+                {receiverId}: {message.text}
               </div>
             )}
           </div>
