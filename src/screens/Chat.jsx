@@ -17,34 +17,30 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState("");
 
   // Firestore reference to the chat collection
-<<<<<<< HEAD
-  const chatRef = collection(db, "chats", user.uid + "-" + receiverId, "messages");
-=======
   const chatRef = collection(
     db,
     "chats",
-    user.uid + "-" + selecteduser.uid,
+    user.uid + "-" + receiverId,
     "messages"
   );
->>>>>>> a0dc89581de869704b5c530cd2f90490e6e64207
 
   // Function to send a new message
- const sendMessage = async () => {
-  if (!receiverId || newMessage.trim() === "") {
-    console.error("ReceiverId is undefined or newMessage is empty.");
-    return;
-  }
+  const sendMessage = async () => {
+    if (!receiverId || newMessage.trim() === "") {
+      console.error("ReceiverId is undefined or newMessage is empty.");
+      return;
+    }
 
-  const messageData = {
-    sender: user.uid,
-    receiver: receiverId,
-    text: newMessage,
-    timestamp: new Date(),
+    const messageData = {
+      sender: user.uid,
+      receiver: receiverId,
+      text: newMessage,
+      timestamp: new Date(),
+    };
+
+    await addDoc(chatRef, messageData);
+    setNewMessage("");
   };
-
-  await addDoc(chatRef, messageData);
-  setNewMessage("");
-};
 
   // Function to listen for new messages
   useEffect(() => {

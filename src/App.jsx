@@ -61,14 +61,8 @@ function App() {
                 </Protected>
               }
             />
-<<<<<<< HEAD
              <Route
               path="/chat/:receiverId"
-=======
-
-            <Route
-              path="/chat"
->>>>>>> a0dc89581de869704b5c530cd2f90490e6e64207
               element={
                 <Protected>
                   <Chat />
