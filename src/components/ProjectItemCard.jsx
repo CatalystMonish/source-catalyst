@@ -2,8 +2,11 @@ import React from "react";
 import SkillPill from "./SkillPill";
 import RatingsBar from "./RatingsBar";
 import TypeBlock from "./TypeBlock";
+import { useNavigate } from "react-router-dom";
 
 const ProjectItemCard = ({
+  key,
+  projectId,
   thumbnail,
   title,
   description,
@@ -12,9 +15,15 @@ const ProjectItemCard = ({
   skills,
   includedTypes,
 }) => {
+  const navigate = useNavigate();
+
+  const goProjectDetails = async () => {
+    navigate(`/project-details/${projectId}`);
+  };
+
   console.log("skills recieved", skills);
   return (
-    <div className="flex justify-center">
+    <div onClick={goProjectDetails} className="flex justify-center">
       <div className="flex max-w-[300px] flex-col rounded-lg bg-white pb-s-15">
         <img
           src={thumbnail}
@@ -38,7 +47,7 @@ const ProjectItemCard = ({
           </div>
           <div className="mt-m-5 flex flex-row flex-wrap gap-1">
             {skills.map((skill, index) => (
-              <SkillPill key={index} skill={skill} />
+              <SkillPill key={index} skillId={skill} />
             ))}
           </div>
           <p className="mt-m-10 font-lexend text-small font-small">INCLUDED</p>

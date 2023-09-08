@@ -17,9 +17,9 @@ import ProfileScreen from "./screens/ProfileScreen";
 import OngoingProjectScreen from "./screens/OngoingProjectScreen";
 import CompleteProfile from "./screens/CompleteProfile";
 import ChatScreen from "./screens/ChatScreen";
+import ProjectDetailsScreen from "./screens/ProjectDetailsScreen";
 import ConnectScreen from "./screens/ConnectScreen";
 import Chat from "./screens/Chat";
-
 
 function App() {
   return (
@@ -46,6 +46,14 @@ function App() {
               }
             />
             <Route
+              path="/project-details/:id"
+              element={
+                <Protected>
+                  <ProjectDetailsScreen />
+                </Protected>
+              }
+            />
+            <Route
               path="/chats"
               element={
                 <Protected>
@@ -53,8 +61,14 @@ function App() {
                 </Protected>
               }
             />
+<<<<<<< HEAD
              <Route
               path="/chat/:receiverId"
+=======
+
+            <Route
+              path="/chat"
+>>>>>>> a0dc89581de869704b5c530cd2f90490e6e64207
               element={
                 <Protected>
                   <Chat />
@@ -137,7 +151,7 @@ function App() {
                 }
               />
 
-               <Route
+              <Route
                 path="/connect"
                 element={
                   <Protected>

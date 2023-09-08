@@ -20,7 +20,7 @@ function TopBar() {
   };
 
   return (
-    <div className="fixed top-0 z-10 flex h-[4rem] w-full flex-row items-center bg-white font-lexend text-heading font-heading shadow-md">
+    <div className="fixed top-0 z-10 flex h-[4rem] w-full flex-row items-center bg-primary font-lexend text-heading font-heading shadow-md">
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ function TopBar() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="ml-m-20 h-6 w-6"
+          className="ml-m-20 h-6 w-6 text-white"
         >
           <path
             strokeLinecap="round"
@@ -39,7 +39,7 @@ function TopBar() {
         </svg>
       </div>
 
-      <p className=" ml-m-15 py-4 font-lexend text-heading font-heading ">
+      <p className=" ml-m-15 py-4 font-lexend text-heading font-heading text-white">
         Source Catalyst
       </p>
 
@@ -50,7 +50,7 @@ function TopBar() {
         viewBox="0 0 24 24"
         strokeWidth={2}
         stroke="currentColor"
-        className="ml-auto mr-m-20 h-[1.25rem] w-[1.25rem]"
+        className="ml-auto mr-m-20 h-[1.25rem] w-[1.25rem] text-white"
       >
         <path
           strokeLinecap="round"
@@ -65,7 +65,7 @@ function TopBar() {
         viewBox="0 0 24 24"
         strokeWidth={2}
         stroke="currentColor"
-        className="mr-m-20 h-[1.25rem] w-[1.25rem]"
+        className="mr-m-20 h-[1.25rem] w-[1.25rem] text-white"
       >
         <path
           strokeLinecap="round"

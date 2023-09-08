@@ -3,7 +3,7 @@ import ProjectItemCard from "../components/ProjectItemCard";
 import TitleBold from "../components/TitleBold";
 import Slider from "react-slick";
 import DomainCard from "../components/DomainCard";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, doc } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 import { db, storage } from "../firebase";
 import { SphereSpinner } from "react-spinners-kit";
@@ -16,46 +16,37 @@ function ProjectsScreen() {
     const fetchData = async () => {
       try {
         setLoading(true);
+
         const querySnapshot = await getDocs(collection(db, "projects"));
-        const projectData = [];
+        const fetchProjectsDataPromises = querySnapshot.docs.map(
+          async (projectDoc) => {
+            const projectData = projectDoc.data();
 
-        for (const doc of querySnapshot.docs) {
-          const data = doc.data();
-
-          // Fetching thumbnail URL from Firebase Storage
-          let thumbnailURL;
-          try {
-            thumbnailURL = await getDownloadURL(
-              ref(storage, data.projectThumbnailURL)
-            );
-          } catch (error) {
-            console.log("Error fetching thumbnail:", error);
-            thumbnailURL = null;
-          }
-
-          // Fetching skill data from 'skills' collection
-          const skillIds = data.skills || [];
-          const skillData = [];
-          for (const skillId of skillIds) {
-            try {
-              const skillDoc = await getDoc(
-                doc(db, "skills", skillId.split("/")[1])
-              );
-              skillData.push(skillDoc.data());
-            } catch (error) {
-              console.log("Error fetching skill:", error);
+            let thumbnailURL;
+            if (projectData.projectThumbnailURL) {
+              try {
+                thumbnailURL = await getDownloadURL(
+                  ref(storage, projectData.projectThumbnailURL)
+                );
+              } catch (error) {
+                console.log("Error fetching thumbnail:", error);
+                thumbnailURL = null;
+              }
             }
+
+            return {
+              id: projectDoc.id,
+              thumbnail: thumbnailURL,
+              skills: projectData.skills || [],
+              ...projectData,
+            };
           }
+        );
 
-          projectData.push({
-            id: doc.id,
-            thumbnail: thumbnailURL,
-            skills: skillData,
-            ...data,
-          });
-        }
+        const allProjectsData = await Promise.all(fetchProjectsDataPromises);
+        console.log("Project Data:", allProjectsData);
 
-        setProjects(projectData);
+        setProjects(allProjectsData);
         setLoading(false);
       } catch (error) {
         console.log("Error fetching projects:", error);
@@ -77,16 +68,19 @@ function ProjectsScreen() {
   };
 
   return (
-    <div className="mt-[4.625rem] bg-light">
+    <div className="mx-m-15 mt-[4.625rem] bg-light">
       <TitleBold text="LATEST PROJECTS" />
       <div>
         {loading ? (
-          <SphereSpinner />
+          <div className="flex w-full justify-center">
+            <SphereSpinner size={30} color="#2E7CF6" loading={loading} />
+          </div>
         ) : (
-          <Slider {...settings}>
+          <div className="flex gap-2">
             {projects.map((project) => (
               <ProjectItemCard
                 key={project.id}
+                projectId={project.id}
                 thumbnail={project.thumbnail}
                 title={project.projectTitle}
                 description={project.projectDescription}
@@ -96,7 +90,7 @@ function ProjectsScreen() {
                 includedTypes={[project.projectType]}
               />
             ))}
-          </Slider>
+          </div>
         )}
       </div>
       <TitleBold text="BY SKILLS" />

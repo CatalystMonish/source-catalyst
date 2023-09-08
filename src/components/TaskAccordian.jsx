@@ -3,6 +3,28 @@ import DocumentBlock from "./DocumentBlock";
 import CodeBlock from "./CodeBlock";
 import VideoBlock from "./VideoBlock";
 
+const ArrowDownIcon = ({ isOpen, onClick }) => {
+  const rotationClass = isOpen ? "rotate-180" : "rotate-0";
+
+  return (
+    <svg
+      onClick={onClick}
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      className={`ml-auto mr-m-15 h-6 w-6 flex-shrink-0 ${rotationClass}`}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+      />
+    </svg>
+  );
+};
+
 const TaskAccordian = ({ title, content, number }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -21,22 +43,7 @@ const TaskAccordian = ({ title, content, number }) => {
           {title}
         </p>
 
-        <svg
-          onClick={() => setIsOpen(!isOpen)}
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          className={`ml-auto mr-m-15 h-6 w-6 flex-shrink-0
-           ${isOpen ? "rotate-180" : "rotate-0"}`}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-          />
-        </svg>
+        <ArrowDownIcon isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
       </div>
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out 

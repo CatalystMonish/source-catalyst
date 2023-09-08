@@ -54,3 +54,7 @@ body {
 .slick-dots li {
   margin: 0 1px; /* Adjust as needed */
 }
+
+.slick-arrow slick-next {
+  background: #000;
+}
