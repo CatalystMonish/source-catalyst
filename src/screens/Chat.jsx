@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { UserAuth } from "../context/AuthContext";
-import { db } from "../firebase"; // Import Firebase services from your firebase.js file
+import { db } from "../firebase";
 import {
   collection,
   addDoc,
   onSnapshot,
   query,
   orderBy,
+  where, // Import 'where' to filter the users collection
 } from "firebase/firestore";
-import { useParams } from "react-router-dom"; // Import useParams for extracting URL parameters
+import { useParams } from "react-router-dom";
 
 const Chat = () => {
   const { user } = UserAuth();
-  const { receiverId } = useParams(); // Extract receiverId from URL parameter
+  const { receiverId } = useParams();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [receiverInfo, setReceiverInfo] = useState(null);
 
   // Firestore reference to the chat collection
   const chatRef = collection(
@@ -53,8 +55,38 @@ const Chat = () => {
     return () => unsubscribe();
   }, [chatRef]);
 
+  useEffect(() => {
+    if (receiverId) {
+      const userRef = collection(db, "users");
+      const userQuery = query(userRef, ("userId", "==", receiverId));
+
+      onSnapshot(userQuery, (snapshot) => {
+        if (!snapshot.empty) {
+          const receiverData = snapshot.docs[0].data();
+          setReceiverInfo(receiverData);
+        } else {
+          // Handle the case where receiver data is not found
+        }
+      });
+    }
+  }, [receiverId]);
+
   return (
     <div className="flex h-full flex-col">
+      {receiverInfo && (
+        <div className="align-center flex flex-row gap-3">
+          {/* <strong>UID:</strong> {user.uid} */}
+          <img
+            className="h-8 w-8 rounded-full "
+            src={receiverInfo.photoURL}
+          ></img>
+          {receiverInfo.displayName && (
+            <span>
+              <strong>{receiverInfo.displayName}</strong>
+            </span>
+          )}
+        </div>
+      )}
       <div className="flex-grow overflow-y-auto p-4">
         {messages.map((message, index) => (
           <div
@@ -65,8 +97,12 @@ const Chat = () => {
                 : "bg-gray-200 text-black"
             }`}
             style={{
-              display: "inline-block",
+              display: "flex",
+              flexDirection: "column",
               wordBreak: "break-word",
+              maxWidth: "70%",
+              alignSelf:
+                message.sender === user.uid ? "flex-end" : "flex-start",
             }}
           >
             {message.text}
@@ -90,13 +126,13 @@ const Chat = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
-            class="h-4 w-4"
+            className="h-4 w-4"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
             />
           </svg>
