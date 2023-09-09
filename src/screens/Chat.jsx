@@ -64,12 +64,16 @@ const Chat = () => {
                 ? "self-end bg-blue-400 text-white"
                 : "bg-gray-200 text-black"
             }`}
-            style={{ maxWidth: "80%", wordBreak: "break-word" }}
+            style={{
+              display: "inline-block",
+              wordBreak: "break-word",
+            }}
           >
             {message.text}
           </div>
         ))}
       </div>
+
       <div className="flex items-center justify-between bg-white p-4">
         <input
           type="text"
