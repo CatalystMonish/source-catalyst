@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ProjectItemCard from "../components/ProjectItemCard";
-import TitleBold from "../components/TitleBold";
-import Slider from "react-slick";
-import DomainCard from "../components/DomainCard";
-import { collection, getDocs, doc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { getDownloadURL, ref } from "firebase/storage";
 import { db, storage } from "../firebase";
-import { SphereSpinner } from "react-spinners-kit";
 
 function ProjectsScreen() {
   const [loading, setLoading] = useState(true);
@@ -22,17 +17,15 @@ function ProjectsScreen() {
         projectsData.map(async (projectDoc) => {
           const skillsData = projectDoc.data().skills || [];
 
-          const skillIds = skillsData
-            .map((skillRef) => {
-              if (skillRef._key && skillRef._key.path) {
-                return skillRef._key.path.segments.pop();
-              }
-              return null;
-            })
-            .filter((id) => id);
+          const skillIds = skillsData.map(skillRef => {
+            if (skillRef._key && skillRef._key.path) {
+              return skillRef._key.path.segments.pop();
+            }
+            return null;
+          }).filter(id => id); 
 
           let thumbnailURL;
-          const projectThumbnailPath = projectDoc.data().projectThumbnailURL;
+          const projectThumbnailPath = projectDoc.data().projectThumbnail;
           if (projectThumbnailPath) {
             try {
               thumbnailURL = await getDownloadURL(
@@ -48,7 +41,7 @@ function ProjectsScreen() {
             id: projectDoc.id,
             ...projectDoc.data(),
             skills: skillIds,
-            thumbnail: thumbnailURL,
+            thumbnail: thumbnailURL
           };
         })
       );
@@ -59,6 +52,7 @@ function ProjectsScreen() {
 
     fetchData();
   }, []);
+
   const settings = {
     dots: true,
     infinite: true,
