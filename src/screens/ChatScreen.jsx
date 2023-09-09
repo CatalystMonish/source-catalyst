@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../firebase"; // Adjust the import path as needed
+import { db } from "../firebase"; // Make sure this path is correctly adjusted
 import { collection, getDocs } from "firebase/firestore";
 import Chat from "./Chat";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom"; // Import useParams for extracting URL parameters
 import { UserAuth } from "../context/AuthContext";
 
 function ChatScreen() {
@@ -24,7 +24,7 @@ function ChatScreen() {
 
         setUsers(userList);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error fetching users:", error); // Handle errors appropriately
       }
     }
 
@@ -46,12 +46,10 @@ function ChatScreen() {
                 <strong>Display Name:</strong> {user.displayName}
               </span>
             )}
-            <Link to="/chat">
+            <Link to={`/chat/${user.uid}`}>
               <button
                 className="bg-green"
-                onClick={() => {
-                  setSelectedUser(user);
-                }}
+                onClick={() => setSelectedUser(user)}
               >
                 Chat
               </button>
