@@ -4,26 +4,49 @@ import SkillPill from "../components/SkillPill";
 import RatingsBar from "../components/RatingsBar";
 import TypeBlock from "../components/TypeBlock";
 import PageBar from "../components/PageBar";
+import { doc, getDoc } from "firebase/firestore";
+import { getDownloadURL, ref } from "firebase/storage";
+import { db, storage } from "../firebase";
 
 function ProjectDetailsScreen() {
   const { id } = useParams();
-
-  // Assuming you'd fetch the project details based on the projectId from the URL
   const [project, setProject] = useState(null);
 
   useEffect(() => {
-    // Fetch the project details here using the projectId and set it to the state.
-    // For now, I'm just using a mock data for demonstration purposes.
-    const mockData = {
-      thumbnail: "path/to/thumbnail.jpg",
-      title: "Project Title",
-      description: "This is a detailed description of the project.",
-      author: "John Doe",
-      rating: 4.5,
-      skills: ["React", "JavaScript", "CSS"],
-      includedTypes: ["Web App", "Mobile App"],
+    const fetchProjectDetails = async () => {
+      try {
+        const projectRef = doc(db, "projects", id);
+        const projectDoc = await getDoc(projectRef);
+
+        if (projectDoc.exists) {
+          const projectData = projectDoc.data();
+
+          let thumbnailURL;
+          const projectThumbnailPath = projectData.projectThumbnailURL;
+          if (projectThumbnailPath) {
+            try {
+              thumbnailURL = await getDownloadURL(
+                ref(storage, projectThumbnailPath)
+              );
+            } catch (error) {
+              console.error("Error fetching thumbnail:", error);
+              thumbnailURL = null;
+            }
+          }
+
+          setProject({
+            ...projectData,
+            thumbnail: thumbnailURL,
+          });
+        } else {
+          console.error("No project found with the given ID.");
+        }
+      } catch (error) {
+        console.error("Error fetching project details:", error);
+      }
     };
-    setProject(mockData);
+
+    fetchProjectDetails();
   }, [id]);
 
   if (!project) return null; // or return a loading spinner
@@ -53,17 +76,17 @@ function ProjectDetailsScreen() {
       </div>
       <h2 className="mt-8 mt-m-10 font-lexend text-small font-small">SKILLS</h2>
       <div className="mt-4 flex flex-row flex-wrap gap-1">
-        {/* {project.skills.map((skill, index) => (
+        {project.skills.map((skill, index) => (
           <SkillPill key={index} skillId={skill} />
-        ))} */}
+        ))}
       </div>
       <h2 className="mt-8 mt-m-10 font-lexend text-small font-small">
         INCLUDED
       </h2>
       <div className="mt-4 flex gap-1">
-        {project.includedTypes.map((type, index) => (
+        {/* {project.includedTypes.map((type, index) => (
           <TypeBlock key={index} type={type} />
-        ))}
+        ))} */}
       </div>
     </div>
   );

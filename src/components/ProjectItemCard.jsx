@@ -25,11 +25,13 @@ const ProjectItemCard = ({
   return (
     <div onClick={goProjectDetails} className="flex justify-center">
       <div className="flex max-w-[300px] flex-col rounded-lg bg-white pb-s-15">
-        <img
-          src={thumbnail}
-          className="h-fit w-full rounded-t-lg"
-          alt="thumbnail"
-        />
+        <div className="h-[160px]">
+          <img
+            src={thumbnail}
+            className="object-fit h-fit w-full rounded-t-lg"
+            alt="thumbnail"
+          />
+        </div>
         <div className="mx-m-15 mt-m-15 flex flex-col ">
           <p className="font-lexend text-title font-title">{title}</p>
           <p className="font-lexend text-label font-label text-text-light">
