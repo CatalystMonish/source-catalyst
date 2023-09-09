@@ -33,28 +33,33 @@ function ChatScreen() {
 
   return (
     <div>
-      <h1>User List</h1>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {users.map((user) => (
-          <div key={user.uid} className="rounded-lg border p-4 shadow-md">
-            <strong>UID:</strong> {user.uid}
-            <br />
-            <strong>Email:</strong> {user.email}
-            <br />
-            {user.displayName && (
-              <span>
-                <strong>Display Name:</strong> {user.displayName}
-              </span>
-            )}
-            <Link to={`/chat/${user.uid}`}>
-              <button
-                className="bg-green"
+          <Link to={`/chat/${user.uid}`} key={user.uid}>
+            <div
+              className="rounded-lg border p-4 shadow-md"
+              onClick={() => setSelectedUser(user)}
+            >
+              <div className="align-center flex flex-row gap-3">
+                {/* <strong>UID:</strong> {user.uid} */}
+                <img
+                  className="h-8 w-8 rounded-full "
+                  src={user.photoURL}
+                ></img>
+                {user.displayName && (
+                  <span>
+                    <strong>{user.displayName}</strong>
+                  </span>
+                )}
+              </div>
+              {/* <button
+                className="align-right rounded-lg bg-green p-2"
                 onClick={() => setSelectedUser(user)}
               >
                 Chat
-              </button>
-            </Link>
-          </div>
+              </button> */}
+            </div>
+          </Link>
         ))}
       </div>
       {selectedUser && <Chat selecteduser={selectedUser} />}

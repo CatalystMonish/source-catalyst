@@ -54,27 +54,50 @@ const Chat = () => {
   }, [chatRef]);
 
   return (
-    <div>
-      <div>
+    <div className="flex h-full flex-col">
+      <div className="flex-grow overflow-y-auto p-4">
         {messages.map((message, index) => (
-          <div key={index}>
-            {message.sender === user.uid ? (
-              <div>Me: {message.text}</div>
-            ) : (
-              <div>
-                {receiverId}: {message.text}
-              </div>
-            )}
+          <div
+            key={index}
+            className={`my-2 rounded-lg p-2 ${
+              message.sender === user.uid
+                ? "self-end bg-blue-400 text-white"
+                : "bg-gray-200 text-black"
+            }`}
+            style={{ maxWidth: "80%", wordBreak: "break-word" }}
+          >
+            {message.text}
           </div>
         ))}
       </div>
-      <input
-        type="text"
-        placeholder="Type your message..."
-        value={newMessage}
-        onChange={(e) => setNewMessage(e.target.value)}
-      />
-      <button onClick={sendMessage}>Send</button>
+      <div className="flex items-center justify-between bg-white p-4">
+        <input
+          type="text"
+          placeholder="Type your message..."
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          className="flex-grow rounded-full border px-4 py-2 focus:outline-none"
+        />
+        <button
+          onClick={sendMessage}
+          className="ml-2 rounded-full bg-blue-500 px-2 py-2 text-white hover:bg-blue-600 focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-4 w-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 };
