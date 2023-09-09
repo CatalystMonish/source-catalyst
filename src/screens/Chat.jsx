@@ -74,7 +74,7 @@ const Chat = () => {
   return (
     <div className="flex h-full flex-col">
       {receiverInfo && (
-        <div className="align-center flex flex-row gap-3">
+        <div className="align-center flex flex-row gap-3 bg-blue-300 p-5">
           {/* <strong>UID:</strong> {user.uid} */}
           <img
             className="h-8 w-8 rounded-full "
