@@ -10,19 +10,20 @@ function WorkScreen() {
           <div className="h-10 w-10 rounded-lg bg-gray-200"></div>
           <div className="">
             <span className="text-md gap-2 font-bold">Source Catalyst</span>
-            <span className="text-xs text-gray-400">2 days ago</span>
-            <span className="h-3 w-10 rounded-full bg-blue-600 text-center text-white">
-              Internship
+            <span className="ml-2 text-xs text-gray-400">2 days ago</span>
+            <span className="ml-6 h-3 w-10 rounded-full bg-blue-800 text-center text-xs text-white">
+              <span className="text-xs"> Internship</span>
             </span>
+
             <br />
             <span className="text-sm text-gray-400">React Developer</span>
           </div>
         </div>
-        <div className="space-x-10">
+        <div className="mt-2 space-x-10">
           <span className="text-xs font-semibold">Skills required</span>
           <span className="text-xs font-semibold">₹2000-₹5000/month</span>
         </div>
-        <div className="flex flex-row">
+        <div className="mt-2 flex flex-row">
           <span className="h-4 w-10 rounded-lg bg-gray-200 p-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,10 +45,10 @@ function WorkScreen() {
           </span>
         </div>
         <hr className="mt-2" />
-        <div className="mt-2 flex flex-row space-x-2">
+        <div className="mt-2 flex flex-row items-center justify-between">
           <span className="h-6 w-6 rounded-full bg-gray-100"></span>
           <span className="text-xs font-semibold">Monish Meher</span>
-          <span className="flex flex-row justify-center gap-1 text-xs font-semibold">
+          <span className="ml-auto flex flex-row justify-center gap-1 text-xs font-semibold">
             Share
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +56,7 @@ function WorkScreen() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="h-4 w-4"
+              className="h-4 w-4"
             >
               <path
                 stroke-linecap="round"
