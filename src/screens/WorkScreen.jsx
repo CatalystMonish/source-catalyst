@@ -23,14 +23,14 @@ function WorkScreen() {
           <span className="text-xs font-semibold">Skills required</span>
           <span className="text-xs font-semibold">₹2000-₹5000/month</span>
         </div>
-        <div className="mt-2 flex flex-row">
-          <span className="h-4 w-10 rounded-lg bg-gray-200 p-1">
+        <div className="mt-2 flex flex-row items-center">
+          <div className="flex items-center rounded-lg bg-gray-200 p-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               x="0px"
               y="0px"
-              width="15"
-              height="15"
+              width="12"
+              height="12"
               viewBox="0 0 48 48"
             >
               <path
@@ -39,11 +39,13 @@ function WorkScreen() {
               ></path>
               <path
                 fill="#FFC107"
-                d="M23.078,43c1.555-0.005,2.633-0.142,3.936-0.367c3.848-0.67,4.549-2.077,4.549-4.67V34h-9v-2h9.343h4.35c2.636,0,4.943-1.242,5.674-4.219c0.826-3.417,0.863-5.557,0-9.125C41.274,15.995,39.831,14,37.194,14h-3.632v5.104c0,2.966-2.686,5.896-5.764,5.896h-7.236c-2.523,0-5,1.862-5,4.377v8.586c0,2.439,1.759,4.263,4.218,4.672C19.719,42.641,21.536,43.006,23.078,43z M28.063,39c-0.821,0-1.5-0.677-1.5-1.502c0-0.833,0.679-1.498,1.5-1.498c0.837,0,1.5,0.664,1.5,1.498C29.563,38.32,28.899,39,28.063,39z"
+                d="M23.078,43c1.555-0.005,2.633-0.142,3.936-0.367c3.848-0.67,4.549-2.077,4.549-4.67V34h-9v-2h9.343h4.35c2.636,0,4.943-1.242,5.674-4.219c0.826-3.417,0.863-5.557,0-9.125C41.274,15.995,39.831,14,37.194,14h-3.632v5.104c0,2.966-2.686,5.896-5.764,5.896h-7.236c-2.523,0-5,1.862-5,4.377v8.586c0,2.439,1.759-4.263-4.218-4.672C19.719,42.641,21.536,43.006,23.078,43z M28.063,39c-0.821,0-1.5-0.677-1.5-1.502c0-0.833,0.679-1.498,1.5-1.498c0.837,0,1.5,0.664,1.5,1.498C29.563,38.32,28.899,39,28.063,39z"
               ></path>
             </svg>
-          </span>
+            <span className="ml-2 text-xs">Python</span>
+          </div>
         </div>
+
         <hr className="mt-2" />
         <div className="mt-2 flex flex-row items-center justify-between">
           <span className="h-6 w-6 rounded-full bg-gray-100"></span>
